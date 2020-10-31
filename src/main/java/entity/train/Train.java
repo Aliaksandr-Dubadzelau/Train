@@ -19,8 +19,8 @@ public class Train {
 
     public boolean addCarriage(Carriage carriage) {
 
-        boolean result = false;
-        Preconditions.checkArgument(carriage.getTail() != null || carriage.getHead() != null,
+        boolean result;
+        Preconditions.checkArgument(carriage.getTail() == null && carriage.getHead() == null,
                 "Carriage must be alone");
 
         if (locomotive.getTail() == null) {

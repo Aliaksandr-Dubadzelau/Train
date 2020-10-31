@@ -1,29 +1,26 @@
 import entity.cargo.Cargo;
 import entity.carriage.impl.FreightCarriage;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
 
 public class FreightCarriageTest {
 
-    @Test
-    public void setCargo_addCargo_carriageWithCargo(){
+    private FreightCarriage carriage;
+    private Cargo cargo;
+    private List<Cargo> cargoList;
 
-        FreightCarriage carriage = FreightCarriage.ofFreightCarriage(1,"A", 15);
-        carriage.setCargo(List.of(Cargo.builder().name("thirdCargo").batchNumber(3).weight(10f).build()));
-
-
-
+    @Before
+    public void initialize() {
+        carriage = FreightCarriage.ofFreightCarriage(1, "A", 1);
+        cargo = Cargo.builder().name("thirdCargo").batchNumber(3).weight(10f).build();
+        cargoList = List.of(cargo);
     }
 
-    @Test
-    public void setCargo_addCargo_exception(){
-
-        FreightCarriage carriage = FreightCarriage.ofFreightCarriage(1,"A", 1);
-        carriage.setCargo(List.of(Cargo.builder().name("thirdCargo").batchNumber(3).weight(10f).build()));
-
-
-
+    @Test(expected = IllegalArgumentException.class)
+    public void setCargo_addCargo_exception() {
+        carriage.setCargo(cargoList);
     }
 
 }

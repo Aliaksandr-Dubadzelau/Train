@@ -29,13 +29,11 @@ public class TrainTest {
         boolean result = train.addCarriage(carriage);
 
         Assert.assertEquals(result, expected);
-
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void addCarriage_addCarriageFromAnotherTrain_exception(){
         train.addCarriage(carriage);
         anotherTrain.addCarriage(carriage);
-
     }
 }

@@ -1,29 +1,30 @@
 import entity.carriage.impl.PassengerCarriage;
+import entity.human.Human;
 import entity.human.Role;
 import entity.human.impl.Passenger;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
 
 public class PassengerCarriageTest {
 
-    @Test
-    public void setPassengers_addPassengers_carriageWithPassangers(){
+    private PassengerCarriage carriage;
+    private Passenger firstPassenger;
+    private Passenger secondPassenger;
+    private List<Human> passengers;
 
-        PassengerCarriage carriage = PassengerCarriage.ofPassengerCarriage(1,"A", 1);
-        carriage.setPassengers(List.of(Passenger.ofPassenger("l", "l", 1, Role.PASSENGER, 1)));
-
-
+    @Before
+    public void initialize() {
+        carriage = PassengerCarriage.ofPassengerCarriage(1, "A", 1);
+        firstPassenger = Passenger.ofPassenger("l", "l", 1, Role.PASSENGER, 1);
+        secondPassenger = Passenger.ofPassenger("m", "m", 2, Role.PASSENGER, 2);
+        passengers = List.of(firstPassenger, secondPassenger);
     }
 
-    @Test
-    public void setPassengers_addPassengers_exception(){
+    @Test(expected = IllegalArgumentException.class)
+    public void setPassengers_addPassengers_exception() {
 
-        PassengerCarriage carriage = PassengerCarriage.ofPassengerCarriage(1,"A", 1);
-        carriage.setPassengers(List.of(
-                Passenger.ofPassenger("l", "l", 1, Role.PASSENGER, 1),
-                Passenger.ofPassenger("l", "l", 1, Role.PASSENGER, 1)));
-
-
+        carriage.setPassengers(passengers);
     }
 }

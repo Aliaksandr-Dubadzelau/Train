@@ -2,12 +2,13 @@ import entity.carriage.Carriage;
 import entity.carriage.FuelType;
 import entity.carriage.impl.Locomotive;
 import entity.carriage.impl.PassengerCarriage;
-import entity.human.Role;
 import entity.human.impl.Driver;
 import entity.train.Train;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import javax.management.relation.Role;
 
 public class TrainTest {
 
@@ -19,11 +20,11 @@ public class TrainTest {
 
     @Before
     public void initialize() {
-        driver = Driver.ofDriver("1", "1", 1, Role.DRIVER, 1);
+        driver = Driver.of("1", "1", 1, 1);
         train = new Train(1, "1", driver, FuelType.COAL);
-        locomotive = Locomotive.ofLocomotive(1, "1", driver, FuelType.COAL);
+        locomotive = Locomotive.of(1, "1", driver, FuelType.COAL);
         anotherTrain = new Train(2, "2", driver, FuelType.DIESEL);
-        carriage = PassengerCarriage.ofPassengerCarriage(1, "2", 2);
+        carriage = PassengerCarriage.of(1, "2", 2);
     }
 
     @Test

@@ -6,6 +6,7 @@ import entity.carriage.Carriage;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -17,17 +18,19 @@ public class FreightCarriage extends Carriage {
     private FreightCarriage(double maxSpeed, String carriageCode, double maxWeight) {
         super(maxSpeed, carriageCode);
         this.maxWeight = maxWeight;
+        this.cargo = new ArrayList<>();
     }
 
-    public static FreightCarriage ofFreightCarriage(double maxSpeed, String carriageCode, double maxWeight) {
+    public static FreightCarriage of(double maxSpeed, String carriageCode, double maxWeight) {
         return new FreightCarriage(maxSpeed, carriageCode, maxWeight);
     }
 
-    public boolean setCargo(List<Cargo> cargo) {
+    public boolean addCargo(Cargo currentCargo){
         double weight = cargo.stream().mapToDouble(Cargo::getWeight).sum();
-        Preconditions.checkArgument(weight <= maxWeight, "It`s more than max weight");
+        double newWeight = weight + currentCargo.getWeight();
 
-        this.cargo = cargo;
+        Preconditions.checkArgument(newWeight <= maxWeight, "It`s more than max weight");
+        this.cargo.add(currentCargo);
 
         return true;
     }

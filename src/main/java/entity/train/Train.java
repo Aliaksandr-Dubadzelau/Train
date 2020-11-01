@@ -16,7 +16,7 @@ public class Train {
     private Carriage lastCarriage;
 
     public Train(double maxSpeed, String carriageCode, Human driver, FuelType fuelType) {
-        this.locomotive = Locomotive.ofLocomotive(maxSpeed, carriageCode, driver, fuelType);
+        this.locomotive = Locomotive.of(maxSpeed, carriageCode, driver, fuelType);
     }
 
     public boolean addCarriage(Carriage carriage) {

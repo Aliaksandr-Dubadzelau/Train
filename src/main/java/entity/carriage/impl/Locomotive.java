@@ -22,11 +22,11 @@ public class Locomotive extends Carriage {
         this.fuelType = fuelType;
     }
 
-    public static Locomotive ofLocomotive(double maxSpeed, String carriageCode) {
+    public static Locomotive of(double maxSpeed, String carriageCode) {
         return new Locomotive(maxSpeed, carriageCode);
     }
 
-    public static Locomotive ofLocomotive(double maxSpeed, String carriageCode, Human driver, FuelType fuelType) {
+    public static Locomotive of(double maxSpeed, String carriageCode, Human driver, FuelType fuelType) {
         return new Locomotive(maxSpeed, carriageCode, driver, fuelType);
     }
 

@@ -11,29 +11,25 @@ public class FreightCarriageTest {
     private FreightCarriage carriage;
     private Cargo firstCargo;
     private Cargo secondCargo;
-    private List<Cargo> illegalCargoList;
-    private List<Cargo> cargoList;
 
     @Before
     public void initialize() {
-        carriage = FreightCarriage.ofFreightCarriage(1, "A", 1);
+        carriage = FreightCarriage.of(1, "A", 1);
         firstCargo = Cargo.builder().name("illegalCargo").batchNumber(3).weight(10f).build();
         secondCargo = Cargo.builder().name("cargo").batchNumber(2).weight(0.3f).build();
-        illegalCargoList = List.of(firstCargo);
-        cargoList = List.of(secondCargo);
     }
 
     @Test
-    public void setCargo_addCargo_true() {
+    public void addCargo_addCargo_true() {
         boolean expected = true;
-        boolean result = carriage.setCargo(cargoList);
+        boolean result = carriage.addCargo(secondCargo);
 
         Assert.assertEquals(expected, result);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void setCargo_addIllegalCargo_exception() {
-        carriage.setCargo(illegalCargoList);
+    public void addCargo_addIllegalCargo_exception() {
+        carriage.addCargo(firstCargo);
     }
 
 }

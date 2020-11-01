@@ -4,14 +4,10 @@ import entity.carriage.FuelType;
 import entity.carriage.impl.FreightCarriage;
 import entity.carriage.impl.PassengerCarriage;
 import entity.human.Human;
-import entity.human.Role;
 import entity.human.impl.Driver;
 import entity.human.impl.Passenger;
 import entity.train.Train;
 import lombok.extern.slf4j.Slf4j;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Slf4j
 public class Application {
@@ -24,28 +20,26 @@ public class Application {
         Cargo thirdCargo = Cargo.builder().name("thirdCargo").batchNumber(3).weight(10f).build();
         log.info("Creation cargo: {}", thirdCargo);
 
-        List<Cargo> cargoList = new ArrayList<>(List.of(firstCargo, secondCargo, thirdCargo));
-        log.info("Creation cargo list: {}", cargoList);
-
-        Human driver = Driver.ofDriver("Ali", "Mahmud", 56, Role.DRIVER, 60000);
+        Human driver = Driver.of("Ali", "Mahmud", 56, 60000);
         log.info("Creation driver: {}", driver);
 
-        Human firstPassenger = Passenger.ofPassenger("Sergey", "Dumno", 23, Role.PASSENGER, 1);
+        Passenger firstPassenger = Passenger.of("Sergey", "Dumno", 23, 1);
         log.info("Creation passenger: {}", firstPassenger);
-        Human secondPassenger = Passenger.ofPassenger("Vitaliy", "Pershikov", 75, Role.PASSENGER, 2);
+        Passenger secondPassenger = Passenger.of("Vitaliy", "Pershikov", 75, 2);
         log.info("Creation passenger: {}", secondPassenger);
-        Human thirdPassenger = Passenger.ofPassenger("Avdotiy", "Urkevich", 11, Role.PASSENGER, 3);
+        Passenger thirdPassenger = Passenger.of("Avdotiy", "Urkevich", 11, 3);
         log.info("Creation passenger: {}", thirdPassenger);
 
-        List<Human> humanList = new ArrayList<>(List.of(firstPassenger, secondPassenger, thirdPassenger));
-        log.info("Creation passenger list: {}", humanList);
-
-        Carriage firstEmptyFreightCarriage = FreightCarriage.ofFreightCarriage(75, "111FE", 600);
-        Carriage secondEmptyFreightCarriage = FreightCarriage.ofFreightCarriage(80, "113FE", 600);
-        FreightCarriage freightCarriage = FreightCarriage.ofFreightCarriage(80, "112F", 500);
-        freightCarriage.setCargo(cargoList);
-        PassengerCarriage passengerCarriage = PassengerCarriage.ofPassengerCarriage(85, "112P", 20);
-        passengerCarriage.setPassengers(humanList);
+        Carriage firstEmptyFreightCarriage = FreightCarriage.of(75, "111FE", 600);
+        Carriage secondEmptyFreightCarriage = FreightCarriage.of(80, "113FE", 600);
+        FreightCarriage freightCarriage = FreightCarriage.of(80, "112F", 500);
+        freightCarriage.addCargo(firstCargo);
+        freightCarriage.addCargo(secondCargo);
+        freightCarriage.addCargo(thirdCargo);
+        PassengerCarriage passengerCarriage = PassengerCarriage.of(85, "112P", 20);
+        passengerCarriage.addPassenger(firstPassenger);
+        passengerCarriage.addPassenger(secondPassenger);
+        passengerCarriage.addPassenger(thirdPassenger);
 
         Train train = new Train(95, "100L", driver, FuelType.DIESEL);
         log.info("createTrain {}", train);

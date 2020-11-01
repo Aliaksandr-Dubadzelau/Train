@@ -1,7 +1,6 @@
 package entity.human.impl;
 
 import entity.human.Human;
-import entity.human.Role;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,17 +13,17 @@ public class Passenger extends Human {
     private Passenger() {
     }
 
-    private Passenger(String name, String surname, int age, Role role, int ticketNumber) {
-        super(name, surname, age, role);
+    private Passenger(String name, String surname, int age, int ticketNumber) {
+        super(name, surname, age);
         this.ticketNumber = ticketNumber;
     }
 
-    public static Passenger ofPassenger() {
+    public static Passenger of() {
         return new Passenger();
     }
 
-    public static Passenger ofPassenger(String name, String surname, int age, Role role, int ticket) {
-        return new Passenger(name, surname, age, role, ticket);
+    public static Passenger of(String name, String surname, int age, int ticket) {
+        return new Passenger(name, surname, age, ticket);
     }
 
     @Override
@@ -32,7 +31,6 @@ public class Passenger extends Human {
         return "Name: " + super.getName() +
                 " Surname: " + super.getSurname() +
                 " Age: " + super.getAge() +
-                " Role: " + super.getRole() +
                 " Ticket number: " + this.getTicketNumber();
     }
 }

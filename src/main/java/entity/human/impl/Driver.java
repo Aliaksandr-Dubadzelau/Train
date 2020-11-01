@@ -1,7 +1,6 @@
 package entity.human.impl;
 
 import entity.human.Human;
-import entity.human.Role;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,17 +13,17 @@ public class Driver extends Human {
     private Driver() {
     }
 
-    private Driver(String name, String surname, int age, Role role, int amountOfWorkHours) {
-        super(name, surname, age, role);
+    private Driver(String name, String surname, int age, int amountOfWorkHours) {
+        super(name, surname, age);
         this.amountOfWorkHours = amountOfWorkHours;
     }
 
-    public static Driver ofDriver() {
+    public static Driver of() {
         return new Driver();
     }
 
-    public static Driver ofDriver(String name, String surname, int age, Role role, int amountOfWorkHours) {
-        return new Driver(name, surname, age, role, amountOfWorkHours);
+    public static Driver of(String name, String surname, int age, int amountOfWorkHours) {
+        return new Driver(name, surname, age, amountOfWorkHours);
     }
 
     @Override
@@ -32,7 +31,6 @@ public class Driver extends Human {
         return " Name: " + super.getName() +
                 " Surname: " + super.getSurname() +
                 " Age: " + super.getAge() +
-                " Role: " + super.getRole() +
                 " Amount of work hours: " + this.getAmountOfWorkHours();
     }
 }

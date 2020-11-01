@@ -21,22 +21,19 @@ public class Train {
 
     public boolean addCarriage(Carriage carriage) {
 
-        boolean result;
         Preconditions.checkArgument(carriage.getTail() == null && carriage.getHead() == null,
                 "Carriage must be alone");
 
         if (locomotive.getTail() == null) {
             locomotive.setTail(carriage);
             carriage.setHead(locomotive);
-            result = true;
         } else {
             lastCarriage.setTail(carriage);
             carriage.setHead(lastCarriage);
-            result = true;
         }
 
         lastCarriage = carriage;
-        return result;
+        return true;
     }
 
     public Carriage getFirstCarriage() {

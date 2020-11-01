@@ -23,11 +23,13 @@ public class FreightCarriage extends Carriage {
         return new FreightCarriage(maxSpeed, carriageCode, maxWeight);
     }
 
-    public void setCargo(List<Cargo> cargo) {
+    public boolean setCargo(List<Cargo> cargo) {
         double weight = cargo.stream().mapToDouble(Cargo::getWeight).sum();
         Preconditions.checkArgument(weight <= maxWeight, "It`s more than max weight");
 
         this.cargo = cargo;
+
+        return true;
     }
 
     @Override

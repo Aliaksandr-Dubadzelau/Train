@@ -21,11 +21,13 @@ public class PassengerCarriage extends Carriage {
         return new PassengerCarriage(maxSpeed, carriageCode, maxAmountOfPassengers);
     }
 
-    public void setPassengers(List<Human> passengers) {
+    public boolean setPassengers(List<Human> passengers) {
         long amountOfPassengers = passengers.size();
         Preconditions.checkArgument(amountOfPassengers <= maxAmountOfPassengers, "It`s more than max passengers");
 
         this.passengers = passengers;
+
+        return true;
     }
 
     @Override

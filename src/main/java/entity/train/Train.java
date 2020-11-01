@@ -5,9 +5,11 @@ import entity.carriage.Carriage;
 import entity.carriage.FuelType;
 import entity.carriage.impl.Locomotive;
 import entity.human.Human;
+import lombok.EqualsAndHashCode;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+@EqualsAndHashCode
 public class Train {
 
     private final Carriage locomotive;
@@ -37,12 +39,41 @@ public class Train {
         return result;
     }
 
-    public void showTrain() {
+    public Carriage getFirstCarriage() {
+        return locomotive;
+    }
+
+    public Carriage getLastCarriage() {
+        return lastCarriage;
+    }
+
+    public Carriage getCarriage(int index) {
         Carriage currentCarriage = locomotive;
+        int currentIndex = 0;
+
+        Preconditions.checkPositionIndex(index, size());
+
+        while (currentCarriage != null && currentIndex != index) {
+            currentCarriage = next(currentCarriage);
+            currentIndex++;
+        }
+
+        return currentCarriage;
+    }
+
+    public int size() {
+        Carriage currentCarriage = locomotive;
+        int size = 0;
 
         while (currentCarriage != null) {
-            log.info("{}", currentCarriage);
-            currentCarriage = currentCarriage.getTail();
+            currentCarriage = next(currentCarriage);
+            size++;
         }
+
+        return size;
+    }
+
+    private Carriage next(Carriage carriage) {
+        return carriage.getTail();
     }
 }

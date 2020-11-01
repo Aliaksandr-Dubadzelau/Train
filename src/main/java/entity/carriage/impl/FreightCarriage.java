@@ -3,11 +3,13 @@ package entity.carriage.impl;
 import com.google.common.base.Preconditions;
 import entity.cargo.Cargo;
 import entity.carriage.Carriage;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 import java.util.List;
 
 @Getter
+@EqualsAndHashCode(callSuper = true)
 public class FreightCarriage extends Carriage {
     private List<Cargo> cargo;
     private final double maxWeight;

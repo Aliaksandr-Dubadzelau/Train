@@ -48,11 +48,25 @@ public class Application {
         passengerCarriage.setPassengers(humanList);
 
         Train train = new Train(95, "100L", driver, FuelType.DIESEL);
+        log.info("createTrain {}", train);
         train.addCarriage(freightCarriage);
+        log.info("addCarriage {}", freightCarriage);
         train.addCarriage(firstEmptyFreightCarriage);
+        log.info("addCarriage {}", firstEmptyFreightCarriage);
         train.addCarriage(passengerCarriage);
+        log.info("addCarriage {}", passengerCarriage);
         train.addCarriage(secondEmptyFreightCarriage);
-        train.showTrain();
+        log.info("addCarrigae {}", secondEmptyFreightCarriage);
 
+        for (int i = 0; i < train.size(); i++) {
+            log.info("{}", train.getCarriage(i));
+        }
+
+        Carriage testCarriage1 = train.getCarriage(1);
+        log.info("getCarriage index 1 {}", testCarriage1);
+        Carriage testCarriage2 = train.getFirstCarriage();
+        log.info("getFirstCarriage {}", testCarriage2);
+        Carriage testCarriage3 = train.getLastCarriage();
+        log.info("getLastCarriage {}", testCarriage3);
     }
 }

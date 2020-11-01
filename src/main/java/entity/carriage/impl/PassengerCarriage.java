@@ -3,9 +3,11 @@ package entity.carriage.impl;
 import com.google.common.base.Preconditions;
 import entity.carriage.Carriage;
 import entity.human.Human;
+import lombok.EqualsAndHashCode;
 
 import java.util.List;
 
+@EqualsAndHashCode(callSuper = true)
 public class PassengerCarriage extends Carriage {
     private List<Human> passengers;
     private final int maxAmountOfPassengers;

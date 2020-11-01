@@ -24,7 +24,6 @@ public class PassengerCarriageTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void setPassengers_addPassengers_exception() {
-
         carriage.setPassengers(passengers);
     }
 }

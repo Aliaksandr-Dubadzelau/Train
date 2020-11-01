@@ -3,7 +3,11 @@ package entity.carriage.impl;
 import entity.carriage.Carriage;
 import entity.carriage.FuelType;
 import entity.human.Human;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 
+@Getter
+@EqualsAndHashCode(callSuper = true)
 public class Locomotive extends Carriage {
     private Human driver;
     private FuelType fuelType;
